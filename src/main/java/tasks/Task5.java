@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /*
 Задача 5
@@ -27,9 +28,7 @@ public class Task5 {
     List<ApiPersonDto> personConvert= new ArrayList<>();
     for(Person person : persons)
     {
-      Integer personId=person.id();
-      Integer personAreaId=personAreaIds.get(personId);
-      personConvert.add(personConverter.convert(person,personAreaId));
+      personConvert.add(personConverter.convert(person,personAreaIds.get(person.id())));
     }
     return personConvert;
   }
