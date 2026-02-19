@@ -3,9 +3,10 @@ package tasks;
 import common.Area;
 import common.Person;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.*;
+import org.hibernate.engine.internal.Collections;
 
 /*
 Имеются
@@ -19,6 +20,14 @@ public class Task6 {
   public static Set<String> getPersonDescriptions(Collection<Person> persons,
                                                   Map<Integer, Set<Integer>> personAreaIds,
                                                   Collection<Area> areas) {
-    return new HashSet<>();
+      Map<Integer, Area> mapForSearchAreasId =areas.stream()
+      .collect(Collectors.toMap(Area::getId, area->area));
+
+      return persons.stream()
+      .flatMap(person->personAreaIds.get(person.id()).stream()
+      .map(mapForSearchAreasId::get)
+      .map(area-> person.firstName()+" - "+area.getName())) 
+      .collect(Collectors.toSet());
+
   }
 }
