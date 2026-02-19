@@ -4,6 +4,7 @@ import common.ApiPersonDto;
 import common.Person;
 import common.PersonConverter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,13 @@ public class Task5 {
   }
 
   public List<ApiPersonDto> convert(List<Person> persons, Map<Integer, Integer> personAreaIds) {
-    return new ArrayList<>();
+    List<ApiPersonDto> personConvert= new ArrayList<>();
+    for(Person person : persons)
+    {
+      Integer personId=person.id();
+      Integer personAreaId=personAreaIds.get(personId);
+      personConvert.add(personConverter.convert(person,personAreaId));
+    }
+    return personConvert;
   }
 }
