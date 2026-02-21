@@ -4,7 +4,6 @@ import common.Person;
 import common.PersonService;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -40,5 +39,6 @@ public class Task1 {
     return orderedPersons;
 
   }
-  //время поиска по значению в карте O(n), по списку тоже O(n), поиск по индексу O(1),получается временная сложность O(2n)=O(n)
+  /*первый цикл для создания словаря O(n),в нем вставка в словарь O(1),второй цикл по списку для сортировки O(n),
+   в нем вставка в конец списка O(1),общая временная сложность O(2n)=O(n)*/
 }
