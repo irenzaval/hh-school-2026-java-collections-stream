@@ -3,8 +3,6 @@ package tasks;
 import common.Area;
 import common.Person;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.*;
@@ -27,7 +25,7 @@ public class Task6 {
       return persons.stream()
       .flatMap(person->personAreaIds.get(person.id()).stream()
       .map(mapForSearch::get)
-      .map(area-> person.firstName()+" - "+area.getName())) //не получается придумать через joining :(
+      .map(area-> person.firstName()+" - "+area.getName())) 
       .collect(Collectors.toSet());
 
   }
