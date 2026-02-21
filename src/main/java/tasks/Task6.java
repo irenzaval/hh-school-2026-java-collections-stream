@@ -20,11 +20,11 @@ public class Task6 {
   public static Set<String> getPersonDescriptions(Collection<Person> persons,
                                                   Map<Integer, Set<Integer>> personAreaIds,
                                                   Collection<Area> areas) {
-      Map<Integer, Area> mapForSearch =areas.stream()
+      Map<Integer, Area> mapForSearchAreasId =areas.stream()
       .collect(Collectors.toMap(Area::getId, area->area));
       return persons.stream()
       .flatMap(person->personAreaIds.get(person.id()).stream()
-      .map(mapForSearch::get)
+      .map(mapForSearchAreasId::get)
       .map(area-> person.firstName()+" - "+area.getName())) 
       .collect(Collectors.toSet());
 
