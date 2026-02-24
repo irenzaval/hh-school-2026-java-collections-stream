@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import java.util.Objects;
 
 /*
 Далее вы увидите код, который специально написан максимально плохо.
@@ -56,7 +57,9 @@ public class Task9 {
   // словарь id персоны -> ее имя
   public Map<Integer, String> getPersonNames(Collection<Person> persons) {
     return persons.stream()
-    .collect(Collectors.toMap(Person::id,person->convertPersonToString(person)));
+    .filter(Objects::nonNull)//обработка null значений
+    .collect(Collectors.toMap(Person::id,person->convertPersonToString(person),(firstKey,secondKey)->firstKey));
+    //на всякий случай добавила обработку дубликатов id
     //проверять вручную дубликаты ключей тоже лишнее, HashMap сам их фильтрует(точнее перезаписывает значение)
   }
 
